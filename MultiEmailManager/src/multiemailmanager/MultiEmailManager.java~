@@ -1,0 +1,90 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package multiemailmanager;
+import java.util.*;
+import java.io.*;
+import javax.swing.*;
+
+/**
+ *
+ * @author Sazib
+ */
+public class MultiEmailManager {
+     String password="";
+     public String globalpwmng="";
+ public String readerEmailpw(String Source) { //This Method Stores Password For Initial Login "Sazib" 1st method for accessing login
+     
+        try
+        {
+            File f = new File(Source);
+            if(f.exists())
+            {
+               Scanner scn = new Scanner(f);
+            password=scn.nextLine();
+            if(globalpwmng.equals("")){
+                globalpwmng=password;
+            }
+               
+            }
+            
+            
+            
+      
+        
+        }catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        
+        return password;
+    }
+ 
+ 
+ public void writerEmailpw(String Source) { //This Method Stores Password For Initial Login "Sazib" 1st method for accessing login
+     
+        try
+        {
+          
+          Scanner scan = new Scanner(System.in);
+          File f = new File(Source);
+          FileWriter fr = new FileWriter(f);
+          BufferedWriter br  = new BufferedWriter(fr);
+          String oldpw=readerEmailpw(Source);
+          String newpw="";
+          String oldpwVerify=JOptionPane.showInputDialog("ENTER Old Password");
+          if(oldpw.equals(oldpwVerify)) {
+            newpw=JOptionPane.showInputDialog("ENTER NEW PASSWORD");
+                br.write(newpw);
+          }else {
+              JOptionPane.showMessageDialog(null, "WRONG Password Provided");
+          }
+        
+        
+        
+              
+      
+   
+        }catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        
+      
+    }
+  
+     
+      
+    
+    
+    
+    
+    public static void main(String[] args) {
+     MultiEmailManager o=new MultiEmailManager();
+     o.readerEmailpw("DoNotOpen.txt");
+        
+    }
+    
+}
